@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pottery Date?</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background-color: #fde4c3;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #8b5e3c;
+      font-size: 3em;
+    }
+
+    h2 {
+      color: #a0522d;
+      margin-bottom: 20px;
+    }
+
+    img {
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #d2b48c;
+      margin-top: 20px;
+    }
+
+    .btn {
+      font-size: 1.5em;
+      padding: 10px 20px;
+      margin: 20px 10px;
+      background-color: #ffb6c1;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
+
+    #response {
+      font-size: 2em;
+      margin-top: 20px;
+      display: none;
+      color: #e75480;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body onclick="playMusic()">
+
+  <h1>Mr. Vishesh Sharma!</h1>
+  <h2>Will you go on a pottery date with me? 🏺💕</h2>
+
+  <div>
+    <img src="photo1.jpg" alt="Our memory photo">
+  </div>
+
+  <p>(Click anywhere to play music 🎶)</p>
+
+  <div>
+    <button class="btn" onclick="sayYes()">Yes 💖</button>
+    <button class="btn" id="noBtn" onmouseover="moveButton()">No 😳</button>
+  </div>
+
+  <div id="response">Congratulations, Vishesh Sharma!
+
+    You have been selected for a special "Princess Treatment" for one day, offered by Yashika Cutie Center. Out of 10,000 individuals, you are the luckiest chosen person for this exclusive opportunity.
+    
+    Kindly enjoy the full benefits of this offer. If you like this treatment then to avail this offer next time, a serive fee will be applicable.
+    
+    Disclaimer:
+    To verify that you are indeed Vishesh Sharma, you will be required to send a personal video clip of yourself saying "I love you."
+    
+    Thank you very much!</div>
+
+  <div class="footer">Just us, clay, and love... together 💞✨</div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="pottery-love-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function sayYes() {
+      document.getElementById("response").style.display = "block";
+    }
+
+    function moveButton() {
+      const btn = document.getElementById("noBtn");
+      const x = Math.floor(Math.random() * 200) - 100;
+      const y = Math.floor(Math.random() * 200) - 100;
+      btn.style.position = "relative";
+      btn.style.left = `${x}px`;
+      btn.style.top = `${y}px`;
+    }
+
+    function playMusic() {
+      const music = document.getElementById("bgMusic");
+      try {
+        if (music.paused) {
+          const playPromise = music.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(error => {
+              console.log("Playback prevented:", error);
+              // Show a message to the user
+              alert("Please click the page to start the music!");
+            });
+          }
+        }
+      } catch (error) {
+        console.log("Error playing music:", error);
+      }
+    }
+
+    // Add an event listener for when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Try to play music when the page loads
+      playMusic();
+    });
+  </script>
+
+</body>
+</html>
